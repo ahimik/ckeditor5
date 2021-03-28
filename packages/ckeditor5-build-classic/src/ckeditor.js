@@ -14,8 +14,19 @@ import StrikeThrough from '@ckeditor/ckeditor5-basic-styles/src/strikethrough';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
-import Alignment from "@ckeditor/ckeditor5-alignment/src/alignment";
-import {Paragraph} from "@ckeditor/ckeditor5-paragraph";
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
+import SpecialCharacters from '@ckeditor/ckeditor5-special-characters/src/specialcharacters';
+import {Paragraph} from '@ckeditor/ckeditor5-paragraph';
+
+function SpecialCharactersEmoji( editor ) {
+	editor.plugins.get( 'SpecialCharacters' ).addItems( 'Emoji', [
+		{ title: 'smiley face', character: '😊' },
+		{ title: 'rocket', character: '🚀' },
+		{ title: 'wind blowing face', character: '🌬️' },
+		{ title: 'floppy disk', character: '💾' },
+		{ title: 'heart', character: '❤️' }
+	] );
+}
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -30,8 +41,11 @@ ClassicEditor.builtinPlugins = [
 	Alignment,
 	Link,
 	PasteFromOffice,
-	TextTransformation
+	SpecialCharacters,
+	TextTransformation,
+	SpecialCharactersEmoji
 ];
+
 
 // Editor configuration.
 ClassicEditor.defaultConfig = {
@@ -45,8 +59,17 @@ ClassicEditor.defaultConfig = {
 			'alignment',
 			'|',
 			'link',
+			'specialCharacters'
 		]
 	},
+	emoji: [
+		{ name: 'smile', text: '🚀' },
+		{ name: 'wink', text: '😉' },
+		{ name: 'cool', text: '😎' },
+		{ name: 'surprise', text: '😮' },
+		{ name: 'confusion', text: '😕' },
+		{ name: 'crying', text: '😢' }
+	],
 	link: {
 		decorators: {
 			openInNewTab: {
